@@ -1,0 +1,53 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    int choice;
+    string username, password;
+    string user, pass;
+
+    cout << "1. Register\n";
+    cout << "2. Login\n";
+    cout << "Enter choice: ";
+    cin >> choice;
+
+    if (choice == 1) {
+        cout << "Enter username: ";
+        cin >> username;
+
+        cout << "Enter password: ";
+        cin >> password;
+
+        ofstream file("user.txt");
+        file << username << endl;
+        file << password << endl;
+        file.close();
+
+        cout << "Registration successful!";
+    }
+
+    else if (choice == 2) {
+        cout << "Enter username: ";
+        cin >> username;
+
+        cout << "Enter password: ";
+        cin >> password;
+
+        ifstream file("user.txt");
+        file >> user;
+        file >> pass;
+        file.close();
+
+        if (username == user && password == pass)
+            cout << "Login successful!";
+        else
+            cout << "Invalid username or password!";
+    }
+
+    else {
+        cout << "Invalid choice!";
+    }
+
+    return 0;
+}
